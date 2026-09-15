@@ -10,16 +10,6 @@ class CliApp
             Console.WriteLine("Unity swapper is only supported on MacOS");
             Environment.Exit(1);
         }
-
-        Console.WriteLine(FindUnityPlayerPath("/Users/apierce/Desktop/pkg/Unity.pkg/Unity/Unity.app"));
-    }
-
-    private static string FindUnityPlayerPath(string input)
-    {
-        if (!Directory.Exists(input))
-            return "doesn't exist";
-        
-        return "nice";
     }
 
     private static string SendToBash(string input)
