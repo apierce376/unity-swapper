@@ -7,39 +7,15 @@ class CliApp
 {
     static void Main(string[] args)
     {
+        /*
         if (!OperatingSystem.IsMacOS())
         {
             Console.WriteLine("Unity swapper is only supported on MacOS");
             Environment.Exit(1);
         }
+        */
 
-        MergeDirectories("/Users/apierce/Desktop/test2/test", "/Users/apierce/Desktop/test/test/");
-    }
-
-    public static void MergeDirectories(string from, string to)
-    {
-        if (from.Split("/").Last() != to.Split("/").Last())
-        {
-            Console.WriteLine("Can't merge directories");
-        }
-
-        foreach (string file in Directory.GetFiles(from).Where(f => Path.GetFileName(f)[0] != '.'))
-        {
-            Console.WriteLine("Copying {0} to {1}", file, to);
-            //File.Copy(file, to + Path.GetFileName(file), true);
-        }
-
-        foreach (string dir in Directory.GetDirectories(from))
-        {
-            if (Path.Exists(to + dir))
-            {
-                
-            }
-            
-            Console.WriteLine(to + Path.DirectorySeparatorChar + Path.GetRelativePath(from, dir));
-            
-            Console.WriteLine(Path.GetRelativePath(from, dir));
-        }
+        FileUtilities.MergeDirectories("/home/apierce/Desktop/from/test", "/home/apierce/Desktop/to/test");
     }
 
     private static string SendToBash(string input)
