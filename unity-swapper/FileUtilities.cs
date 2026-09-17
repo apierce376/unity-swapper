@@ -2,6 +2,34 @@ namespace unity_swapper;
 
 public static class FileUtilities
 {
+    public static string FindFilePath(string path, string fileName)
+    {
+        string filePath = "";
+        
+        if (!Directory.Exists(path))
+        {
+            return "";
+        }
+
+        foreach (string file in  Directory.GetFiles(path))
+        {
+            if (Path.GetFileName(file) == fileName)
+            {
+                Console.WriteLine("Checking file {0}", file);
+                return file;
+            }
+        }
+
+        foreach (string dir in Directory.GetDirectories(path))
+        {
+            filePath = FindFilePath(dir, fileName);
+            
+            if (filePath != "") break;
+        }
+
+        return filePath;
+    }
+    
     public static string SearchForSubdirectory(string path, string directory)
     {
         string unityPlayerPath = "";
